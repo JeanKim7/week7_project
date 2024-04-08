@@ -17,9 +17,28 @@ function findCountry(event){
 }
 
 function displayCountry(data){
-    console.log(data)
     document.getElementById('hidden').style.display = "flex"
+    document.getElementById('country-flag').src=data[0]['flags']['png']
+    document.getElementById('country-name').innerHTML = `country: ${data[0]['name']['official']}`
+    document.getElementById('country-capital').innerHTML = `capital: ${data[0]['capital']}`
 
-    document.getElementById('flag-img').src=data[0][]
-    console.log(data[0]['name'])
+    console.log(Object.values(data[0]['languages']).slice(1))
+    let lan = `${Object.values((data)[0]['languages'])[0]}`
+    if ((Object.values((data)[0]['languages'])).length>1){
+        for (let language of Object.values(data[0]['languages']).slice(1)) {
+            lan += `, ${language}`
+    }
+    }
+
+    console.log(Object.values(data[0]['currencies']).slice(1))
+    let cur = `${Object.values((data)[0]['currencies'])[0]['name']}`
+    if ((Object.values((data)[0]['currencies'])).length>1){
+        for (let currency of Object.values(data[0]['currencies']).slice(1)) {
+            cur += `, ${currency['name']}`
+    }
+    }
+
+
+    document.getElementById('country-languages').innerHTML = `languages: ${lan}`
+    document.getElementById('country-currencies').innerHTML = `currencies: ${cur}`
 }
